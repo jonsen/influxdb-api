@@ -1,2 +1,2 @@
 # influxdb-api
-A smiple influxdb client api
+A simple influxdb client api
