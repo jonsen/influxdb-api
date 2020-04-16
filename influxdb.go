@@ -1,6 +1,7 @@
 package influxdb
 
 import (
+	"errors"
 	uurl "net/url"
 	"time"
 
@@ -58,6 +59,10 @@ func (db *InfClient) Push(measurement string, tags map[string]string, fields map
 }
 
 func (db *InfClient) Writer() (err error) {
+	if len(db.pts) < 1 {
+		err = errors.New("pts is null")
+		return
+	}
 	bps := client.BatchPoints{
 		Points:   db.pts,
 		Database: db.database,
